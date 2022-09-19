@@ -4568,20 +4568,31 @@ fn copy_all(dupes bool) {
 
 By convention it is preferred that comments are written in *present tense*.
 
-An overview of the module must be placed in the first comment right after the module's name.
+In order to include a general module's description at the top of its documentation's page, you
+merely need to create a file named `README.md` and add the option `-readme` when calling the tool.
 
-To generate documentation use vdoc, for example `v doc net.http`.
+You can describe any function, type or constant with a doc string by inserting its name in the line
+before in a single-line comment, *e.g.*
+```v
+// double takes two integers, double each one and add them, then returns the result.
+fn double(n int, m int) int {
+```
+
+To automatically generate a documentation, run `v doc` command, *e.g.* `v doc -f html -readme -all -m net.http/`.
+The above example produces a documentation in <i>.html</i> format for every functions, types and 
+constants in all modules included in the `http` folder of the `net` package. Run `v help doc` for 
+further informations regarding this topic.
 
 ### Newlines in Documentation Comments
 
-Comments spanning multiple lines are merged together using spaces, unless
+Comments spanning over multiple lines are merged together using spaces, unless
 
 - the line is empty
 - the line ends with a `.` (end of sentence)
-- the line is purely of at least 3 of `-`, `=`, `_`, `*`, `~` (horizontal rule)
+- the line is composed of at least 3 of the following characters:  `-`, `=`, `_`, `*`, `~` (horizontal rule)
 - the line starts with at least one `#` followed by a space (header)
-- the line starts and ends with a `|` (table)
-- the line starts with `- ` (list)
+- the line both starts and ends with a `|` (table)
+- the line starts with `- ` (list).
 
 ## Tools
 
